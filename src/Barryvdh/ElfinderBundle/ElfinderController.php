@@ -29,10 +29,12 @@ class ElfinderController extends \BaseController {
 
         $dir = 'packages/barryvdh/elfinder-bundle';
         $locale = \Config::get('app.locale');
+        $csrf = Config::get($this->package . '::csrf');
+        
         if(!file_exists(public_path()."/$dir/js/i18n/elfinder.$locale.js")){
             $locale = false;
         }
-        return \View::make('elfinder-bundle::tinymce4')->with(compact('dir', 'locale'));
+        return \View::make('elfinder-bundle::tinymce4')->with(compact('dir', 'locale','csrf'));
     }
 
     public function showConnector(){
